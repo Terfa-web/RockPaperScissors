@@ -1,7 +1,4 @@
-
-
-
-const wordsArray= ['rock', 'paper', 'scissors'];
+const wordsArray = ['rock', 'paper', 'scissors']
 
 function computerChoice() {
   const randomNumber = Math.floor(Math.random() * wordsArray.length);
@@ -23,52 +20,81 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+  let gameOver = false;
+
   const rockImage = document.querySelector('.rock');
   const paperImage = document.querySelector('.paper');
   const scissorsImage = document.querySelector('.scissors');
 
-
+  let playerScore = 0;
+  let  computerScore = 0;
 
 function game(e) {
-  
-  let playerScore = 0;
-  let computerScore = 0;
-  const resultDiv = document.querySelector(".card.first")
-  const divParagraph = document.querySelector(".card.first p")
-  
-  for (let i = 0; i < 5; i++) { 
-  
-    //get players and computer choice
-    const playerSelection = e.target.className ;
-    const computerSelection = computerChoice();
-    const result = playRound(playerSelection, computerSelection);
-
-    //add computer image choice to result
     
-    //use innerHTMl to display outcome in div
+  if(gameOver) {
+    return;
+  }else{
+    const resultDiv = document.querySelector(".card.first")
+    const divParagraph = document.querySelector(".card.first p")
     
-    divParagraph.textContent = result;
-    resultDiv.appendChild(divParagraph);
-    //document.appendChild(resultDiv);
+    
+    
+      //get players and computer choice
+      const playerSelection = e.target.className ;
+      const computerSelection = computerChoice();
+      let result = playRound(playerSelection, computerSelection);
+  
+   
+      
+      //use innerHTMl to display outcome in div
+      
+      divParagraph.textContent = result;
+      resultDiv.appendChild(divParagraph);
+      
+  
+      // increment or decrement scores for computer and player
+      if (result.includes('You win!')) {
+        playerScore++;
+        
+      } else if (result.includes('You lose!')) {
+        computerScore++;
+       
+      }
 
-    // increment or decrement scores for computer and player
-    if (result.includes('You win!')) {
-      playerScore++;
-    } else if (result.includes('You lose!')) {
-      computerScore++;
-    }
+      if (computerScore >=5 || playerScore >=5) {
+        endGame(playerScore,computerScore);
+      }
   }
 
-
-  //final decision and display result in a div
-  if (playerScore > computerScore) {
-    //result =`You win the game! Final score: ${playerScore}-${computerScore}`;
-  } else if (computerScore > playerScore) {
-   // result = `You lose the game! Final score: ${computerScore}-${playerScore}`;
-  } else {
-   //result =`It's a tie! Final score: ${playerScore}-${computerScore}`;
-  }
 }
+
+
+let result= '';
+
+function endGame(computerScore,playerScore) {       
+
+          //final decision and display result in a div
+        if (playerScore > computerScore) {
+          result +=`You win the game! Final score: ${playerScore}-${computerScore}`;
+        } else if (computerScore > playerScore) {
+          result += `You lose the game! Final score: ${computerScore}-${playerScore}`;
+        } else {
+        result +=`It's a tie! Final score: ${playerScore}-${computerScore}`;
+        }
+        
+
+        const resultDiv = document.querySelector(".card.first")
+        const divParagraph = document.querySelector(".card.first p")
+
+        divParagraph.textContent = result;
+        resultDiv.appendChild(divParagraph);
+
+        gameOver = true;
+} 
+
+
+
+
 
 rockImage.addEventListener("click", game);
 paperImage.addEventListener("click", game);
