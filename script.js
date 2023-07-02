@@ -1,3 +1,6 @@
+
+
+
 const wordsArray= ['rock', 'paper', 'scissors'];
 
 function computerChoice() {
@@ -10,7 +13,7 @@ function playRound(playerSelection, computerSelection) {
   computerSelection = computerSelection.toLowerCase();
 
   if (playerSelection === computerSelection) {
-    return "It's a tie!";
+    return  "It's a tie!";
   } else if (playerSelection === 'rock' && computerSelection === 'scissors' ||
              playerSelection === 'paper' && computerSelection === 'rock' ||
              playerSelection === 'scissors' && computerSelection === 'paper') {
@@ -20,30 +23,53 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
+  const rockImage = document.querySelector('.rock');
+  const paperImage = document.querySelector('.paper');
+  const scissorsImage = document.querySelector('.scissors');
+
+
+
+function game(e) {
+  
   let playerScore = 0;
   let computerScore = 0;
-
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt('Choose rock, paper, or scissors:');
+  const resultDiv = document.querySelector(".card.first")
+  const divParagraph = document.querySelector(".card.first p")
+  
+  for (let i = 0; i < 5; i++) { 
+  
+    //get players and computer choice
+    const playerSelection = e.target.className ;
     const computerSelection = computerChoice();
     const result = playRound(playerSelection, computerSelection);
-    console.log(result);
 
-    if (result.startsWith('You win!')) {
+    //add computer image choice to result
+    
+    //use innerHTMl to display outcome in div
+    
+    divParagraph.textContent = result;
+    resultDiv.appendChild(divParagraph);
+    //document.appendChild(resultDiv);
+
+    // increment or decrement scores for computer and player
+    if (result.includes('You win!')) {
       playerScore++;
-    } else if (result.startsWith('You lose!')) {
+    } else if (result.includes('You lose!')) {
       computerScore++;
     }
   }
 
+
+  //final decision and display result in a div
   if (playerScore > computerScore) {
-    console.log(`You win the game! Final score: ${playerScore}-${computerScore}`);
+    //result =`You win the game! Final score: ${playerScore}-${computerScore}`;
   } else if (computerScore > playerScore) {
-    console.log(`You lose the game! Final score: ${computerScore}-${playerScore}`);
+   // result = `You lose the game! Final score: ${computerScore}-${playerScore}`;
   } else {
-    console.log(`It's a tie! Final score: ${playerScore}-${computerScore}`);
+   //result =`It's a tie! Final score: ${playerScore}-${computerScore}`;
   }
 }
 
-game();
+rockImage.addEventListener("click", game);
+paperImage.addEventListener("click", game);
+scissorsImage.addEventListener("click", game);

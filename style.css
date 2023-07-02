@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&family=Roboto:ital,wght@0,400;0,500;1,400&display=swap');
+
+
+
+ body { 
+   
+  background-color: rgb(185, 200, 195);
+  height: 100%;
+}
+
+
+.container {
+  display: flex;
+  flex-direction:column;
+  height: 100vh;
+  width: 700px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-style: none;
+  
+}
+
+.container > div  {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  font-size: 30px;
+}
+
+.header {
+  height: 50px;
+  border-radius: 5px;
+  text-align: center;
+  font-family: roboto;
+}
+
+.card.first {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card.first p {
+  font-family: roboto;
+  font-size: 20px;
+}
+.mid-section {
+  height: 600px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.mid2-section {
+  display: flex;
+  flex-direction: column;
+  margin: 3px;
+  
+  
+  background-color: aquamarine;
+  width: 500px;
+}
+
+.mid2-section .card {
+  height: 200px;
+  width: 500px;
+  cursor: pointer;
+  
+}
+
+.card {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: bisque;
+}
+
+.card.first {
+  height: ;
+}
+.card.second {
+  background-color: beige;
+  
+}
+.card.second > img {
+  margin-right: 30px;
+  height: 70px;
+  width: 80px;
+  color: #c98484;
+}
+
+.card.third {
+  background-color: azure;
+}
+
+.card.third {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2f3f2;
+}
+
+.card.third > p {
+  margin: 2px;
+  font-size: 20px;
+  font-family: roboto;
+}
