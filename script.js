@@ -1,101 +1,83 @@
-const wordsArray = ['rock', 'paper', 'scissors']
-
-function computerChoice() {
-  const randomNumber = Math.floor(Math.random() * wordsArray.length);
-  return wordsArray[randomNumber];
+let score = JSON.parse(localStorage.getItem('score')) || {      
+  wins: 0,
+  losses: 0,
+  ties: 0,
 }
 
-function playRound(playerSelection, computerSelection) {
-  playerSelection = playerSelection.toLowerCase();
-  computerSelection = computerSelection.toLowerCase();
+updateScoreElement();
 
-  if (playerSelection === computerSelection) {
-    return  "It's a tie!";
-  } else if (playerSelection === 'rock' && computerSelection === 'scissors' ||
-             playerSelection === 'paper' && computerSelection === 'rock' ||
-             playerSelection === 'scissors' && computerSelection === 'paper') {
-    return `You win! ${playerSelection} beats ${computerSelection}.`;
-  } else {
-    return `You lose! ${computerSelection} beats ${playerSelection}.`;
+
+
+function playGame(playerMove){
+
+const computerMove = pickComputerMove();
+
+  
+  let result = '';
+
+  if (playerMove === 'paper') {
+    if (computerMove === 'rock'){
+    result = 'You win.';
+  } else if (computerMove === 'paper') {
+    result = 'Its a Tie';
+  } else  if(computerMove === 'scissors') {
+    result = 'You lose.';
+  }
+}  else if (playerMove === 'rock') {
+  if (computerMove === 'rock'){
+      result = 'Its a Tie';
+    } else if (computerMove === 'paper') {
+      result = 'You lose.';
+    } else  if(computerMove === 'scissors') {
+      result = 'You win.';
+    }
+}  else if (playerMove === 'scissors'){
+  if (computerMove === 'rock'){
+    result = 'You lose.';
+  } else if (computerMove === 'paper') {
+    result = 'You win.';
+  } else  if(computerMove === 'scissors') {
+    result = 'Its a Tie.';
   }
 }
 
-  let gameOver = false;
-
-  const rockImage = document.querySelector('.rock');
-  const paperImage = document.querySelector('.paper');
-  const scissorsImage = document.querySelector('.scissors');
-
-  let playerScore = 0;
-  let  computerScore = 0;
-
-function game(e) {
-    
-  if(gameOver) {
-    return;
-  }else{
-    const resultDiv = document.querySelector(".card.first")
-    const divParagraph = document.querySelector(".card.first p")
-    
-    
-    
-      //get players and computer choice
-      const playerSelection = e.target.className ;
-      const computerSelection = computerChoice();
-      let result = playRound(playerSelection, computerSelection);
-  
-   
-      
-      //use innerHTMl to display outcome in div
-      
-      divParagraph.textContent = result;
-      resultDiv.appendChild(divParagraph);
-      
-  
-      // increment or decrement scores for computer and player
-      if (result.includes('You win!')) {
-        playerScore++;
-        
-      } else if (result.includes('You lose!')) {
-        computerScore++;
-       
-      }
-
-      if (computerScore >=5 || playerScore >=5) {
-        endGame(playerScore,computerScore);
-      }
-  }
-
+if (result === 'You win.') {
+  score.wins +=1;
+} else if (result === 'You lose.') {
+  score.losses +=1;
+} else if (result === 'Its a Tie.') {
+  score.ties +=1;
 }
 
+localStorage.setItem('score', JSON.stringify(score));
 
-let result= '';
+updateScoreElement();
 
-function endGame(computerScore,playerScore) {       
+document.querySelector('.js-result')
+.innerHTML = result;
 
-          //final decision and display result in a div
-        if (playerScore > computerScore) {
-          result +=`You win the game! Final score: ${playerScore}-${computerScore}`;
-        } else if (computerScore > playerScore) {
-          result += `You lose the game! Final score: ${computerScore}-${playerScore}`;
-        } else {
-        result +=`It's a tie! Final score: ${playerScore}-${computerScore}`;
-        }
-        
+document.querySelector('.js-moves')
+.innerHTML = `You
+<img src="images/${playerMove}-emoji.png">
+<img src="images/${computerMove}-emoji.png">
+Computer`;        
+}
 
-        const resultDiv = document.querySelector(".card.first")
-        const divParagraph = document.querySelector(".card.first p")
+function updateScoreElement() {
+document.querySelector('.js-score')
+.innerHTML=`Wins: ${score.wins}, Losses: ${score.losses},Ties: ${score.ties}`;
+}
 
-        divParagraph.textContent = result;
-        resultDiv.appendChild(divParagraph);
+function pickComputerMove () {
+const randomNumber = Math.random();
+let  computerMove;
 
-        gameOver = true;
-} 
-
-
-
-
-
-rockImage.addEventListener("click", game);
-paperImage.addEventListener("click", game);
-scissorsImage.addEventListener("click", game);
+if (randomNumber >=0 && randomNumber< 1/3) {
+  computerMove = 'rock';
+} else if(randomNumber >= 1/3 && randomNumber < 2/3) {
+    computerMove = 'paper';
+} else if (randomNumber >= 2/3 && randomNumber < 1) {
+      computerMove ='scissors';
+}
+return computerMove;
+}

@@ -1,131 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&family=Roboto:ital,wght@0,400;0,500;1,400&display=swap');
-
-
-
- body { 
-   
-  background-color: rgb(185, 200, 195);
-  height: 100%;
-}
-
-
-@keyframes slidein {
-  from {
-    margin-top: -50%;
-    
-  }
-
-  to {
-    margin-top: 0%;
-    
-  }
-}
-
-
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.container {
-  display: flex;
-  flex-direction:column;
-  height: 100vh;
-  width: 700px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-style: none;
-  
-}
-
-.container > div  {
-  background-color: #f1f1f1;
-  border-radius: 10px;
-  font-size: 30px;
-}
-
-.header {
-  height: 50px;
-  border-radius: 5px;
-  text-align: center;
-  font-family: roboto;
-}
-
-.card.first {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.card.first p {
-  font-family: roboto;
-  font-size: 25px;
-  animation: slidein 3s ease-in-out ;
-}
-.mid-section {
-  height: 600px;
-  border-radius: 5px;
+body {
+  background-color: transparent;
+  color: white;
+  font-family: Arial;
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
-.mid2-section {
-  display: flex;
-  flex-direction: column;
-  margin: 3px;
-  
-  
-  background-color: aquamarine;
-  width: 500px;
-}
-
-.mid2-section .card {
-  height: 200px;
-  width: 500px;
-  cursor: pointer;
-  
-}
-
-.card {
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(241, 237, 232);
-}
-
-.card.first {
-  height: 300px;
-}
-.card.second {
-  background-color: beige;
-  height: 80px;
-}
-.card.second > img {
-  margin-right: 30px;
-  height: 70px;
-  width: 80px;
-  color: #c98484;
-  animation: spin 1s linear;
-}
-
-.card.third {
-  background-color: azure;
-}
-
-.card.third {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f2f3f2;
-}
-
-.card.third > p {
-  margin: 2px;
+ p {
+  font-family:'Times New Roman', Times, serif;
   font-size: 20px;
-  font-family: roboto;
+ }
+.main-container {
+  padding: 10px;
+  margin-top: 60px;
+  background-color: rgb(25, 25, 25);
+}
+
+.paragraph-contents {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  padding-left: 60px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+img {
+  height: 50px;
+
+}
+
+.move-button {
+  background-color: transparent;
+  border: 3px solid white;
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  margin-right: 10px;
+  cursor: pointer;
+
+
+}
+
+.result {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 50px; 
+}
+
+.score {
+  margin-top: 60px;
+}
+
+.reset-score {
+  background-color: transparent;
+  border: 5px solid white;
+  font-size: 15px;
+  padding: 8px 15px;
+  cursor: pointer;
+  color: rgb(227, 186, 22);
+  border-radius: 8px;
+  
 }

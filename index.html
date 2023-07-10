@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+  <script src="script.js" defers></script>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <script defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <title>Rock Paper Scissors</title>
+  <style rel="stylesheet" href="style.css"></style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">GAME ON</div>
-    <div class="mid-section">
-      <div class="mid2-section">
-        <div class="card first">
-          <p>Welcome to Rock Paper Scissors game.</p>
-          
-        </div>
-        <div class="card second">
-            <img class="rock" src="images/rock.png"  alt="img" >
-            <img class="paper" src="images/paper.png" alt="img" >
-            <img class="scissors" src="images/scissors.png" alt="img" >
-      </div>
-        <div class="card third">
-          <p>Rock-Paper-Scissors Game</p>
-          <p>&#64; 2023 Odin Projects</p>
-          <p>TERMS &#9728; PRIVACY</p>
-        </div> 
-      </div>     
-    </div>
-    
-    
+  <div class="main-container">
+          <p class=" title"> Rock Paper Scissors</p>
+          <button class="move-button" onclick="
+                playGame('rock')
+          "><img src="images/rock-emoji.png"></button>
+
+          <button class="move-button" onclick="
+              playGame('paper')  
+          "><img src="images/paper-emoji.png"></button>
+
+          <button class="move-button" onclick=" 
+              playGame('scissors')
+                "
+          ><img src="images/scissors-emoji.png"></button>
+          <div class="paragraph-contents">
+              <p class="js-result result"></p>
+
+              <p class="js-moves">
+              Welcome to Rock paper Scissors game <p></p>click a shape to play.
+              </p>
+
+              <p class="js-score score"></p>
+
+              <button onclick="  
+                score.wins = 0;
+                score.losses= 0;
+                score.ties = 0;  
+                localStorage.removeItem('score');
+                updateScoreElement();
+              " class = "reset-score">Reset Score</button>
+          </div>
+
   </div>
+   
 </body>
 </html>
